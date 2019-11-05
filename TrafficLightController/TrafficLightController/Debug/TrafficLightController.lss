@@ -1,0 +1,182 @@
+
+TrafficLightController.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000c4  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000118  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000118  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000148  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000048  00000000  00000000  00000184  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000006be  00000000  00000000  000001cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000554  00000000  00000000  0000088a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000445  00000000  00000000  00000dde  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000074  00000000  00000000  00001224  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000318  00000000  00000000  00001298  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000011e  00000000  00000000  000015b0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000038  00000000  00000000  000016ce  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	19 c0       	rjmp	.+50     	; 0x36 <__bad_interrupt>
+   4:	18 c0       	rjmp	.+48     	; 0x36 <__bad_interrupt>
+   6:	17 c0       	rjmp	.+46     	; 0x36 <__bad_interrupt>
+   8:	16 c0       	rjmp	.+44     	; 0x36 <__bad_interrupt>
+   a:	15 c0       	rjmp	.+42     	; 0x36 <__bad_interrupt>
+   c:	14 c0       	rjmp	.+40     	; 0x36 <__bad_interrupt>
+   e:	13 c0       	rjmp	.+38     	; 0x36 <__bad_interrupt>
+  10:	12 c0       	rjmp	.+36     	; 0x36 <__bad_interrupt>
+  12:	11 c0       	rjmp	.+34     	; 0x36 <__bad_interrupt>
+  14:	10 c0       	rjmp	.+32     	; 0x36 <__bad_interrupt>
+  16:	0f c0       	rjmp	.+30     	; 0x36 <__bad_interrupt>
+  18:	0e c0       	rjmp	.+28     	; 0x36 <__bad_interrupt>
+  1a:	0d c0       	rjmp	.+26     	; 0x36 <__bad_interrupt>
+  1c:	0c c0       	rjmp	.+24     	; 0x36 <__bad_interrupt>
+  1e:	0b c0       	rjmp	.+22     	; 0x36 <__bad_interrupt>
+  20:	0a c0       	rjmp	.+20     	; 0x36 <__bad_interrupt>
+  22:	09 c0       	rjmp	.+18     	; 0x36 <__bad_interrupt>
+  24:	08 c0       	rjmp	.+16     	; 0x36 <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+  32:	28 d0       	rcall	.+80     	; 0x84 <main>
+  34:	45 c0       	rjmp	.+138    	; 0xc0 <_exit>
+
+00000036 <__bad_interrupt>:
+  36:	e4 cf       	rjmp	.-56     	; 0x0 <__vectors>
+
+00000038 <atmega8AInit>:
+	C_YELLOW_LED_OFF;
+	C_GREEN_LED_OFF;
+	
+	D_RED_LED_ON;
+	D_YELLOW_LED_OFF;
+	D_GREEN_LED_OFF;
+  38:	2f ef       	ldi	r18, 0xFF	; 255
+  3a:	80 e7       	ldi	r24, 0x70	; 112
+  3c:	92 e0       	ldi	r25, 0x02	; 2
+  3e:	21 50       	subi	r18, 0x01	; 1
+  40:	80 40       	sbci	r24, 0x00	; 0
+  42:	90 40       	sbci	r25, 0x00	; 0
+  44:	e1 f7       	brne	.-8      	; 0x3e <__SP_H__>
+  46:	00 c0       	rjmp	.+0      	; 0x48 <__SREG__+0x9>
+  48:	00 00       	nop
+  4a:	18 ba       	out	0x18, r1	; 24
+  4c:	00 00       	nop
+  4e:	87 b3       	in	r24, 0x17	; 23
+  50:	8f 63       	ori	r24, 0x3F	; 63
+  52:	87 bb       	out	0x17, r24	; 23
+  54:	00 00       	nop
+  56:	15 ba       	out	0x15, r1	; 21
+  58:	00 00       	nop
+  5a:	84 b3       	in	r24, 0x14	; 20
+  5c:	84 bb       	out	0x14, r24	; 20
+  5e:	00 00       	nop
+  60:	12 ba       	out	0x12, r1	; 18
+  62:	00 00       	nop
+  64:	81 b3       	in	r24, 0x11	; 17
+  66:	8c 6f       	ori	r24, 0xFC	; 252
+  68:	81 bb       	out	0x11, r24	; 17
+  6a:	81 b3       	in	r24, 0x11	; 17
+  6c:	83 60       	ori	r24, 0x03	; 3
+  6e:	81 bb       	out	0x11, r24	; 17
+  70:	2f e7       	ldi	r18, 0x7F	; 127
+  72:	88 e3       	ldi	r24, 0x38	; 56
+  74:	91 e0       	ldi	r25, 0x01	; 1
+  76:	21 50       	subi	r18, 0x01	; 1
+  78:	80 40       	sbci	r24, 0x00	; 0
+  7a:	90 40       	sbci	r25, 0x00	; 0
+  7c:	e1 f7       	brne	.-8      	; 0x76 <__SREG__+0x37>
+  7e:	00 c0       	rjmp	.+0      	; 0x80 <__SREG__+0x41>
+  80:	00 00       	nop
+  82:	08 95       	ret
+
+00000084 <main>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  84:	8f ec       	ldi	r24, 0xCF	; 207
+  86:	97 e0       	ldi	r25, 0x07	; 7
+  88:	01 97       	sbiw	r24, 0x01	; 1
+  8a:	f1 f7       	brne	.-4      	; 0x88 <main+0x4>
+  8c:	00 c0       	rjmp	.+0      	; 0x8e <main+0xa>
+  8e:	00 00       	nop
+}
+
+int main(void)
+{
+	_delay_ms(1);
+	atmega8AInit();
+  90:	d3 df       	rcall	.-90     	; 0x38 <atmega8AInit>
+  92:	9f ef       	ldi	r25, 0xFF	; 255
+  94:	21 ee       	ldi	r18, 0xE1	; 225
+  96:	84 e0       	ldi	r24, 0x04	; 4
+  98:	91 50       	subi	r25, 0x01	; 1
+  9a:	20 40       	sbci	r18, 0x00	; 0
+  9c:	80 40       	sbci	r24, 0x00	; 0
+  9e:	e1 f7       	brne	.-8      	; 0x98 <main+0x14>
+  a0:	00 c0       	rjmp	.+0      	; 0xa2 <main+0x1e>
+  a2:	00 00       	nop
+	_delay_ms(200);
+	
+	
+	
+	A_RED_LED_OFF;
+  a4:	90 98       	cbi	0x12, 0	; 18
+	A_YELLOW_LED_OFF;
+  a6:	91 98       	cbi	0x12, 1	; 18
+	A_GREEN_LED_OFF;
+  a8:	92 98       	cbi	0x12, 2	; 18
+	
+	B_RED_LED_OFF;
+  aa:	93 98       	cbi	0x12, 3	; 18
+	B_YELLOW_LED_OFF;
+  ac:	94 98       	cbi	0x12, 4	; 18
+	B_GREEN_LED_OFF;
+  ae:	95 98       	cbi	0x12, 5	; 18
+	
+	C_RED_LED_OFF;
+  b0:	96 98       	cbi	0x12, 6	; 18
+	C_YELLOW_LED_OFF;
+  b2:	97 98       	cbi	0x12, 7	; 18
+	C_GREEN_LED_OFF;
+  b4:	c0 98       	cbi	0x18, 0	; 24
+	
+	D_RED_LED_OFF;
+  b6:	c1 98       	cbi	0x18, 1	; 24
+	D_YELLOW_LED_OFF;
+  b8:	c2 98       	cbi	0x18, 2	; 24
+	D_GREEN_LED_OFF;
+  ba:	c3 98       	cbi	0x18, 3	; 24
+	
+	KEEP_LEFT_GREEN_LED_OFF;
+  bc:	c4 98       	cbi	0x18, 4	; 24
+  be:	ff cf       	rjmp	.-2      	; 0xbe <main+0x3a>
+
+000000c0 <_exit>:
+  c0:	f8 94       	cli
+
+000000c2 <__stop_program>:
+  c2:	ff cf       	rjmp	.-2      	; 0xc2 <__stop_program>
